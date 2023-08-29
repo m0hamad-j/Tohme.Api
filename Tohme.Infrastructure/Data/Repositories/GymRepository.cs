@@ -3,7 +3,7 @@
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
-namespace Tohme.Infrastructure.Data
+namespace Tohme.Infrastructure.Data.Repositories
 {
     public class GymRepository : IGymRepository
     {

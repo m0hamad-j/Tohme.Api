@@ -8,8 +8,8 @@ namespace Tohme.Application.Command
     public record CreateGym(int? id, string Name) : IRequest<Gym>;
     public class CreateGymHandler : IRequestHandler<CreateGym, Gym>
     {
-        private readonly IGymRepository _gyms;
-        public CreateGymHandler(IGymRepository gyms)
+        private readonly IBaseRepository<Gym> _gyms;
+        public CreateGymHandler(IBaseRepository<Gym> gyms)
         {
             _gyms = gyms;
         }
@@ -20,7 +20,7 @@ namespace Tohme.Application.Command
             var gym = await _gyms.GetById(id, cancellationToken);
             gym?.Update(name);
             gym ??= new Gym(name);
-            return await _gyms.CreateOrUpdate(gym, cancellationToken);
+            return await _gyms.CreateOrUpdate(id, gym, cancellationToken);
         }
     }
 

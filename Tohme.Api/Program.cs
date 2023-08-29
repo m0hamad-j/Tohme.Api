@@ -1,6 +1,6 @@
 using Tohme.Application.Command;
 using Tohme.Application.Interfaces;
-using Tohme.Infrastructure.Data;
+using Tohme.Infrastructure.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddTransient<IGymRepository, GymRepository>();
 builder.Services.AddTransient<ITrainerRepository, TrainerRepository>();
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateTrainer).Assembly));
+builder.Services.AddTransient(typeof(IBaseRepository<>),typeof(BaseRepository<>));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateGym).Assembly));
 var app = builder.Build();
 

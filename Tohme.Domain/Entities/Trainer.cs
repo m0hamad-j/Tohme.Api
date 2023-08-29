@@ -11,6 +11,12 @@ namespace Tohme.Domain.Entities
             Name = name;
             Age = age;
         }
+
+        public void Update(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
     }
 
 }
