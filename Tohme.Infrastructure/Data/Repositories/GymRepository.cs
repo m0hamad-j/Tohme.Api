@@ -26,8 +26,13 @@ namespace Tohme.Infrastructure.Data.Repositories
             await _context.SaveChangesAsync(cancellationToken);
             return gym;
         }
-
-        public Task<Gym?> GetById(int? id, CancellationToken cancellationToken)
+        public async Task<Gym> UpdateGym(Gym gym, CancellationToken cancellationToken)
+        {
+            gym=_context.Update(gym).Entity;
+            await _context.SaveChangesAsync(cancellationToken);
+            return gym;
+        }
+        public Task<Gym?> GetNullableById(int? id, CancellationToken cancellationToken)
         {
             return _context.Gyms.FirstOrDefaultAsync(g => g.Id == id, cancellationToken);
         }

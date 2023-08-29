@@ -17,11 +17,12 @@ namespace Tohme.Application.Command
         public async Task<Gym> Handle(CreateGym request, CancellationToken cancellationToken)
         {
             var (id, name) = request;
-            var gym = await _gyms.GetById(id, cancellationToken);
+            var gym = await _gyms.GetNullableById(id, cancellationToken);
             gym?.Update(name);
             gym ??= new Gym(name);
             return await _gyms.CreateOrUpdate(id, gym, cancellationToken);
         }
+   
     }
 
 

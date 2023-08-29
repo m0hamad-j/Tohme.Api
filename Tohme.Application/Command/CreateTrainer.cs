@@ -17,7 +17,7 @@ namespace Tohme.Application.Command
         public async Task<Trainer> Handle(CreateTrainer request, CancellationToken cancellationToken)
         {
             var (id, name, age) = request;
-            var trainer = await _trainers.GetById(id, cancellationToken);
+            var trainer = await _trainers.GetNullableById(id, cancellationToken);
             trainer?.Update(name, age);
             trainer ??= new Trainer(name, age);
             return await _trainers.CreateOrUpdate(id, trainer, cancellationToken);

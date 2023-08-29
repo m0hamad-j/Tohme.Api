@@ -4,24 +4,23 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Tohme.Application.Command;
+
 using Tohme.Domain.Entities;
 
 namespace Tohme.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GymsController : ControllerBase
+    public class DumbbellController : ControllerBase
     {
+
         private readonly IMediator _mediator;
-        public GymsController(IMediator mediator)
+        public DumbbellController(IMediator mediator)
         {
             _mediator = mediator;
         }
         [HttpPut]
-        public async Task<Gym> Post(CreateGym request) 
+        public async Task<Dumbbell> Post(CreateDumbbell request)
             => await _mediator.Send(request);
-        [HttpPut("addtrainer")]
-        public async Task<Gym> Post(AddTrainerToGym request) => await _mediator.Send(request);
     }
-
 }
