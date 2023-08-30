@@ -6,9 +6,6 @@ public class AppDbContext : DbContext
 {
     public DbSet<Gym> Gyms { get; set; }
     public DbSet<Trainer> Trainers { get; set; }
-    public DbSet<Trainee> Trainees { get; set; }
-    public DbSet<Protein> Proteins { get; set; }
-    public DbSet<Dumbbell> Dumbbells { get; set; }
 
     public string DbPath { get; }
 

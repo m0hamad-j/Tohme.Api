@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using Tohme.Application.Command.GymCommands;
 using Tohme.Domain.Entities;
 
@@ -17,7 +17,16 @@ namespace Tohme.Api.Controllers
             _mediator = mediator;
         }
         [HttpPut]
-        public async Task<Gym> Post(CreateGym request) 
-            => await _mediator.Send(request);
+        public async Task<Gym> Post(CreateGym request, CancellationToken cancellationToken)
+            => await _mediator.Send(request, cancellationToken);
+
+        [HttpPut("AddTrainer")]
+        public async Task<Gym> AddTrainer(AddTrainerToGym request, CancellationToken cancellationToken)
+            => await _mediator.Send(request, cancellationToken);
+
+
+        [HttpGet]
+        public async Task<Gym> GetById([FromQuery] DisplayGym request, CancellationToken cancellationToken)
+            => await _mediator.Send(request, cancellationToken);
     }
 }

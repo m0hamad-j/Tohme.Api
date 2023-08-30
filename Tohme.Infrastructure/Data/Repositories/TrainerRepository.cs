@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Microsoft.EntityFrameworkCore;
-
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
@@ -19,24 +17,11 @@ namespace Tohme.Infrastructure.Data.Repositories
         {
             _context = context;
         }
-        public async Task<Trainer> CreateOrUpdate(Trainer trainer, CancellationToken cancellationToken)
+        public async Task<Trainer> Create(Trainer trainer)
         {
-            if (trainer.Id != 0)
-            {
-                trainer = _context.Update(trainer).Entity;
-            }
-            else
-            {
-                trainer = _context.Add(trainer).Entity;
-
-            }
-            await _context.SaveChangesAsync(cancellationToken);
-            return trainer;
-        }
-
-        public Task<Trainer?> GetNullableById(int? id, CancellationToken cancellationToken)
-        {
-            return _context.Trainers.FirstOrDefaultAsync(g => g.Id == id, cancellationToken);
+            var newTrainer = _context.Add(trainer);
+            await _context.SaveChangesAsync();
+            return newTrainer.Entity;
         }
     }
 }

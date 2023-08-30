@@ -11,7 +11,7 @@ namespace Tohme.Application.Interfaces
     public interface IGymRepository
     {
         Task<Gym> CreateOrUpdate(Gym gym, CancellationToken cancellation);
-        Task<Gym?> GetNullableById(int? id, CancellationToken cancellationToken);
-        Task<Gym> UpdateGym(Gym gym, CancellationToken cancellationToken);
+        Task<Gym?> GetById(int? id, CancellationToken cancellationToken);
+        Task<Gym> GetWithTrainerById(int id, CancellationToken cancellationToken);
     }
 }

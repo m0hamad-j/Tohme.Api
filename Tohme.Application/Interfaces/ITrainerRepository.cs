@@ -10,7 +10,6 @@ namespace Tohme.Application.Interfaces
 {
     public interface ITrainerRepository
     {
-        Task<Trainer> CreateOrUpdate(Trainer trainer, CancellationToken cancellation);
-        Task<Trainer?> GetNullableById(int? id, CancellationToken cancellationToken);
+        Task<Trainer> Create(Trainer trainer);
     }
 }

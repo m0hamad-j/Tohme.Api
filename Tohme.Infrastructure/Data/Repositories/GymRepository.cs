@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Runtime.CompilerServices;
+
+using Microsoft.EntityFrameworkCore;
 
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
@@ -28,13 +30,20 @@ namespace Tohme.Infrastructure.Data.Repositories
         }
         public async Task<Gym> UpdateGym(Gym gym, CancellationToken cancellationToken)
         {
-            gym=_context.Update(gym).Entity;
+            gym = _context.Update(gym).Entity;
             await _context.SaveChangesAsync(cancellationToken);
             return gym;
         }
-        public Task<Gym?> GetNullableById(int? id, CancellationToken cancellationToken)
+        public async Task<Gym?> GetNullableById(int? id, CancellationToken cancellationToken)
         {
-            return _context.Gyms.FirstOrDefaultAsync(g => g.Id == id, cancellationToken);
+            return await _context.Gyms.FirstOrDefaultAsync(g => g.Id == id, cancellationToken);
+        }
+        public async Task<Gym> GetWithTrainerById(int id, CancellationToken cancellationToken)
+            => await _context.Gyms.Include(g => g.Trainers).FirstOrDefaultAsync(g => g.Id == id, cancellationToken) ?? throw new Exception("Item not found");
+
+        public Task<Gym?> GetById(int? id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Tohme.Domain.Entities
         public string Name { get; set; }
         public List<Trainer> Trainers { get; set; }=new List<Trainer>();
         public List<Trainee> Trainees { get; set; } = new List<Trainee>();
-        public List<Protein> Proteines { get; set; } = new List<Protein>();
+        public List<Protein> Proteins { get; set; } = new List<Protein>();
         public List<Dumbbell> Dumbbells { get; set; } =new List<Dumbbell>();
 
         public Gym(string name)
@@ -28,7 +28,7 @@ namespace Tohme.Domain.Entities
         }
         public void AddProtein(Protein protein)
         { 
-            Proteines.Add(protein);
+            Proteins.Add(protein);
         }
         public void AddDumbbell(Dumbbell dumbbell)
         {
