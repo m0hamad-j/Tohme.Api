@@ -3,7 +3,7 @@
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
-namespace Tohme.Application.Command
+namespace Tohme.Application.Command.TrainerCommands
 {
     public record CreateTrainer(int? id, string Name, int Age) : IRequest<Trainer>;
     public class CreateTrainerHandler : IRequestHandler<CreateTrainer, Trainer>

@@ -2,8 +2,7 @@
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Tohme.Application.Command;
-
+using Tohme.Application.Command.ProteinCommands;
 using Tohme.Domain.Entities;
 
 namespace Tohme.Api.Controllers

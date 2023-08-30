@@ -3,7 +3,7 @@
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
-namespace Tohme.Application.Command
+namespace Tohme.Application.Command.GymCommands
 {
     public record AddTrainerToGym(int gymId, int trainerId) : IRequest<Gym>;
     public class AddTrainerToGymHandler : IRequestHandler<AddTrainerToGym, Gym>
@@ -21,7 +21,7 @@ namespace Tohme.Application.Command
             var gym = await _gyms.GetNullableById(gymId, cancellationToken);
             var trainer = await _trainers.GetById(trainerId, cancellationToken);
             gym.AddTrainer(trainer);
-            return await _gyms.UpdateGym(gym,cancellationToken);
+            return await _gyms.UpdateGym(gym, cancellationToken);
         }
     }
 }

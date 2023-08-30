@@ -8,7 +8,7 @@ using MediatR;
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
-namespace Tohme.Application.Command
+namespace Tohme.Application.Command.DumbbellCommands
 {
 
     public record CreateDumbbell(int? id, int weight) : IRequest<Dumbbell>;
@@ -18,7 +18,7 @@ namespace Tohme.Application.Command
         public CreateDumbbellHandler(IBaseRepository<Dumbbell> dumbbell)
 
 
-        { 
+        {
             _dumbbell = dumbbell;
         }
 

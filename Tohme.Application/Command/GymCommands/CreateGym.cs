@@ -3,9 +3,9 @@
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
-namespace Tohme.Application.Command
+namespace Tohme.Application.Command.GymCommands
 {
-    public record CreateGym(int? id, string Name) : IRequest<Gym>;
+    public record CreateGym(int? Id, string Name) : IRequest<Gym>;
     public class CreateGymHandler : IRequestHandler<CreateGym, Gym>
     {
         private readonly IBaseRepository<Gym> _gyms;
@@ -22,7 +22,7 @@ namespace Tohme.Application.Command
             gym ??= new Gym(name);
             return await _gyms.CreateOrUpdate(id, gym, cancellationToken);
         }
-   
+
     }
 
 

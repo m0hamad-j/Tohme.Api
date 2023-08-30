@@ -1,5 +1,4 @@
-﻿using Tohme.Domain.Entities;
-using Tohme.Shared.Abstraction;
+﻿using Tohme.Shared.Abstraction;
 
 namespace Tohme.Application.Interfaces
 {
@@ -12,5 +11,7 @@ namespace Tohme.Application.Interfaces
         Task<TEntity> UpdateGym(TEntity entity, CancellationToken cancellationToken);
         Task<TEntity?> GetNullableById(int? id, CancellationToken cancellationToken);
         Task<List<TEntity>> GetAll(CancellationToken cancellationToken);
+        Task<TEntity> GetById(int? id, string[] includes, CancellationToken cancellationToken);
+        Task<List<TEntity>> GetAll(string[] includes, CancellationToken cancellationToken);
     }
 }

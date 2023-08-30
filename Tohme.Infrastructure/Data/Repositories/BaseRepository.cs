@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
+using Tohme.Shared;
 using Tohme.Shared.Abstraction;
 
 namespace Tohme.Infrastructure.Data.Repositories
@@ -39,6 +40,8 @@ namespace Tohme.Infrastructure.Data.Repositories
             => await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken);
         public async Task<TEntity> GetById(int? id, CancellationToken cancellationToken)
             => await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken) ?? throw new Exception("Item not found");
+        public async Task<TEntity> GetById(int? id, string[] includes, CancellationToken cancellationToken)
+            => await _context.Set<TEntity>().MultiInclude(includes).FirstOrDefaultAsync(x => x.Id == id, cancellationToken: cancellationToken) ?? throw new Exception("Item not found");
 
         public async Task<TEntity> UpdateGym(TEntity entity, CancellationToken cancellationToken)
         {
@@ -48,6 +51,7 @@ namespace Tohme.Infrastructure.Data.Repositories
         }
         public async Task<List<TEntity>> GetAll(CancellationToken cancellationToken)
             => await _context.Set<TEntity>().ToListAsync(cancellationToken);
-
+        public async Task<List<TEntity>> GetAll(string[] includes, CancellationToken cancellationToken)
+            => await _context.Set<TEntity>().MultiInclude(includes).ToListAsync(cancellationToken);
     }
 }

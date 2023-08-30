@@ -1,4 +1,4 @@
-using Tohme.Application.Command;
+using Tohme.Application.Command.GymCommands;
 using Tohme.Application.Interfaces;
 using Tohme.Infrastructure.Data.Repositories;
 
@@ -13,11 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddTransient<IGymRepository, GymRepository>();
 builder.Services.AddTransient<ITrainerRepository, TrainerRepository>();
-builder.Services.AddTransient <ITraineeRepository , TraineeRepository>();
-builder.Services.AddTransient<IProteinRepository, ProteinRepository>();
-builder.Services.AddTransient <IDumbbellRepository , DumbbellRepository>(); 
 builder.Services.AddTransient(typeof(IBaseRepository<>),typeof(BaseRepository<>));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateTrainee).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateGym).Assembly));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -8,7 +8,7 @@ using MediatR;
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
-namespace Tohme.Application.Command
+namespace Tohme.Application.Command.ProteinCommands
 {
     public record CreateProtein(int? id, string Name) : IRequest<Protein>;
     public class CreateProteinHandler : IRequestHandler<CreateProtein, Protein>

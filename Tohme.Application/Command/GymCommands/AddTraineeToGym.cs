@@ -3,7 +3,7 @@
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
-namespace Tohme.Application.Command
+namespace Tohme.Application.Command.GymCommands
 {
     public record AddTraineeToGym(int gymId, int traineeId) : IRequest<Gym>;
     public class AddTraineeToGymHandler : IRequestHandler<AddTraineeToGym, Gym>
