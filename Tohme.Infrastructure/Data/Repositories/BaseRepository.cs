@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel;
+
+using MediatR;
+
+using Microsoft.EntityFrameworkCore;
 
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
@@ -42,5 +46,8 @@ namespace Tohme.Infrastructure.Data.Repositories
             await _context.SaveChangesAsync(cancellationToken);
             return entity;
         }
+        public async Task<List<TEntity>> GetAll(CancellationToken cancellationToken)
+            => await _context.Set<TEntity>().ToListAsync(cancellationToken);
+
     }
 }

@@ -20,8 +20,15 @@ namespace Tohme.Api.Controllers
         [HttpPut]
         public async Task<Gym> Post(CreateGym request) 
             => await _mediator.Send(request);
-        [HttpPut("addtrainer")]
+        [HttpPost("addtrainer")]
         public async Task<Gym> Post(AddTrainerToGym request) => await _mediator.Send(request);
+
+        [HttpPost("add trainee") ]
+        public async Task<Gym> Post(AddTraineeToGym request) => await _mediator .Send(request);
+
+        [HttpGet]
+        public async Task<Gym> Get([FromQuery]DisplayGym request) => await _mediator.Send(request);
     }
+    
 
 }

@@ -11,5 +11,6 @@ namespace Tohme.Application.Interfaces
         Task<TEntity> GetById(int? id, CancellationToken cancellationToken);
         Task<TEntity> UpdateGym(TEntity entity, CancellationToken cancellationToken);
         Task<TEntity?> GetNullableById(int? id, CancellationToken cancellationToken);
+        Task<List<TEntity>> GetAll(CancellationToken cancellationToken);
     }
 }
