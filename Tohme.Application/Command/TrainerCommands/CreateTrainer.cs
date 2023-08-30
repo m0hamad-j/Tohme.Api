@@ -1,5 +1,8 @@
-﻿using MediatR;
+﻿using FluentValidation;
 
+using MediatR;
+
+using Tohme.Application.Command.GymCommands;
 using Tohme.Application.Interfaces;
 using Tohme.Domain.Entities;
 
@@ -21,6 +24,14 @@ namespace Tohme.Application.Command.TrainerCommands
             trainer?.Update(name, age);
             trainer ??= new Trainer(name, age);
             return await _trainers.CreateOrUpdate(id, trainer, cancellationToken);
+        }
+    }
+    public class CreateTrainerValidator : AbstractValidator<CreateTrainer>
+    {
+        public CreateTrainerValidator()
+        {
+            RuleFor(c => c.Name).Must(n => n == "Hussein").When(c => c.Age == 24);
+            ;
         }
     }
 }

@@ -3,6 +3,8 @@
 using Microsoft.AspNetCore.Mvc;
 
 using Tohme.Application.Command.GymCommands;
+using Tohme.Application.Dto;
+using Tohme.Application.Queries;
 using Tohme.Domain.Entities;
 
 namespace Tohme.Api.Controllers
@@ -16,8 +18,8 @@ namespace Tohme.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpPut]
-        public async Task<Gym> Post(CreateGym request, CancellationToken cancellationToken)
+        [HttpPost]
+        public async Task<GymDto> Post(CreateGym request, CancellationToken cancellationToken)
             => await _mediator.Send(request, cancellationToken);
 
         [HttpPut("AddTrainer")]
@@ -26,7 +28,7 @@ namespace Tohme.Api.Controllers
 
 
         [HttpGet]
-        public async Task<Gym> GetById([FromQuery] DisplayGym request, CancellationToken cancellationToken)
+        public async Task<GymDto> GetById([FromQuery] DisplayGym request, CancellationToken cancellationToken)
             => await _mediator.Send(request, cancellationToken);
     }
 }

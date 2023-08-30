@@ -13,5 +13,6 @@ namespace Tohme.Application.Interfaces
         Task<List<TEntity>> GetAll(CancellationToken cancellationToken);
         Task<TEntity> GetById(int? id, string[] includes, CancellationToken cancellationToken);
         Task<List<TEntity>> GetAll(string[] includes, CancellationToken cancellationToken);
+        Task Delete(int id, CancellationToken cancellationToken);
     }
 }

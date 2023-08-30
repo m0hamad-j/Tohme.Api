@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 using MediatR;
 
@@ -53,5 +54,12 @@ namespace Tohme.Infrastructure.Data.Repositories
             => await _context.Set<TEntity>().ToListAsync(cancellationToken);
         public async Task<List<TEntity>> GetAll(string[] includes, CancellationToken cancellationToken)
             => await _context.Set<TEntity>().MultiInclude(includes).ToListAsync(cancellationToken);
+
+        public async Task Delete(int id, CancellationToken cancellationToken)
+        {
+            var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(_ => _.Id == id, cancellationToken) ?? throw new Exception("Item not found");
+            _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }
